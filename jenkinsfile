@@ -1,27 +1,25 @@
 pipeline {
     agent any
-    
     tools {
         maven 'maven'
-        jdk 'JDK'
+        jdk 'null'
     }
-    
     stages {
         stage('Build') {
             steps {
-                bat 'mvn -B -DskipTests clean package'
+                sh 'mvn -B -DskipTests clean package'
             }
         }
         stage('Test') {
             steps {
-               bat 'mvn test'
+                sh 'mvn test'
+            }
+            
             }
         }
         stage('Deliver') {
             steps {
-                bat 'chmod +x scripts/deliver.sh'
-                bat './scripts/deliver.sh'
+                sh './scripts/deliver.sh'
             }
         }
     }
-}
