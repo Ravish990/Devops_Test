@@ -16,10 +16,11 @@ pipeline {
             }
             
             }
-        }
+        
         stage('Deliver') {
             steps {
                 bat './scripts/deliver.sh'
             }
         }
     }
+}
