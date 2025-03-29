@@ -1,34 +1,27 @@
 pipeline {
     agent any
+    
     tools {
-        maven 'maven'
-        
-        
+        maven 'Maven'
+        jdk 'JDK'
     }
+    
     stages {
-        stage('Git Checkout') {
-            steps {
-                echo 'Performing Git Checkout'
-            }
-        }
         stage('Build') {
             steps {
-                echo 'Building'
                 bat 'mvn -B -DskipTests clean package'
             }
         }
         stage('Test') {
             steps {
-                echo 'Testing'
-                bat 'mvn test' 
+               bat 'mvn test'
             }
         }
         stage('Deliver') {
             steps {
-                echo 'Delivering'
+                // sh 'chmod +x scripts/deliver.sh'
                 bat './scripts/deliver.sh'
             }
         }
-        
     }
 }
