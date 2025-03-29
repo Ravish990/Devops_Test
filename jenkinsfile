@@ -19,7 +19,7 @@ pipeline {
         }
         stage('Deliver') {
             steps {
-                // sh 'chmod +x scripts/deliver.sh'
+                bat 'chmod +x scripts/deliver.sh'
                 bat './scripts/deliver.sh'
             }
         }
